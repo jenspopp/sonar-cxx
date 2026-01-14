@@ -28,8 +28,8 @@
             },
             "visible": true,
             "shape": "trust-boundary-box",
-            "id": "33ead7a5-e781-4be8-a677-b5fe1f7e2956",
             "zIndex": -1,
+            "id": "33ead7a5-e781-4be8-a677-b5fe1f7e2956",
             "data": {
               "type": "tm.BoundaryBox",
               "name": "Trust Boundary",
@@ -54,8 +54,8 @@
             },
             "visible": true,
             "shape": "trust-boundary-box",
-            "id": "22590f78-4c0d-4760-a100-99de1c6ef3c9",
             "zIndex": -1,
+            "id": "22590f78-4c0d-4760-a100-99de1c6ef3c9",
             "data": {
               "type": "tm.BoundaryBox",
               "name": "Trust Boundary",
@@ -91,6 +91,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -174,7 +175,6 @@
               ]
             },
             "id": "26e98a61-97db-45e3-bb5b-da00379fb4ce",
-            "zIndex": 1,
             "data": {
               "type": "tm.Actor",
               "name": "User",
@@ -205,6 +205,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 2,
             "ports": {
               "groups": {
                 "top": {
@@ -288,7 +289,6 @@
               ]
             },
             "id": "7547db99-4f77-46a9-806d-9b053588a97b",
-            "zIndex": 2,
             "data": {
               "type": "tm.Process",
               "name": "Process",
@@ -400,6 +400,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 11,
             "ports": {
               "groups": {
                 "top": {
@@ -483,7 +484,6 @@
               ]
             },
             "id": "f0da47fb-4f3e-4975-9818-3f0b26a87b2b",
-            "zIndex": 11,
             "data": {
               "type": "tm.Process",
               "name": "Process",
