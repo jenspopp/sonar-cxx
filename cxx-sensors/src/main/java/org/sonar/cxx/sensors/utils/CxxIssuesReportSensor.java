@@ -91,12 +91,8 @@ public abstract class CxxIssuesReportSensor extends CxxReportSensor {
 
   private void downloadRulesFromServer(Configuration configuration) {
     try {
-        String url = configuration.get("sonar.host.url").orElse("http://localhost:9000");
-    	LOG.info("Downloading rules for '{}' from server '{}'", getRuleRepositoryKey(), url);
-
       var rules = webApi
-        .setServerConfig(configuration)
-        .getRules("cxx", getRuleRepositoryKey());
+        .setServerConfig(configuration)        .getRules("cxx", getRuleRepositoryKey());
 
       // deactivate mapping if 'unknown' rule is not active
       var ruleMappingActive = true;

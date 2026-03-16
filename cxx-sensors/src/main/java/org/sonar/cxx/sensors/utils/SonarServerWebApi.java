@@ -100,14 +100,14 @@ public class SonarServerWebApi {
    * @return A correctly setup http client
    */
   private synchronized HttpClient getHttpClient() {
-      if (client == null || client.isTerminated()) {
-	  if (sslContext != null) {
-	      client = HttpClient.newBuilder().sslContext(sslContext).build();
-	  } else {
-	      client = HttpClient.newHttpClient();
-	  }
+    if (client == null || client.isTerminated()) {
+      if (sslContext != null) {
+        client = HttpClient.newBuilder().sslContext(sslContext).build();
+      } else {
+        client = HttpClient.newHttpClient();
       }
-      return client;
+    }
+    return client;
   }
   
   /**
@@ -120,7 +120,6 @@ public class SonarServerWebApi {
    * @throws IOException if an I/O error occurs when sending or receiving
    */
   public String get(String uri, String authorization) throws IOException {
-//    if (uri==null || uri.isBlank()) return "";  
     HttpClient client = getHttpClient();
     HttpRequest request = HttpRequest.newBuilder()
       .uri(URI.create(uri))
@@ -168,19 +167,20 @@ public class SonarServerWebApi {
    */
   public SonarServerWebApi setServerConfig(Configuration configuration) {
 
-      var tempUrl = configuration.get("sonar.host.url").orElse("http://localhost:9000");
-      if (!Objects.equals(tempUrl, this.serverUrl)) {
-	      this.serverUrl = tempUrl;
-	      this.sslContext = SSLContextBuilder.createSSLContext(configuration);
-      }
-      // TODO: sonar.login is deprecated, remove in future version
-      String authenticationToken = configuration.get("sonar.token").or(() -> configuration.get("sonar.login"))
-	      .orElse(System.getenv("SONAR_TOKEN"));
-      var tempAuth = "Basic " + Base64.getEncoder().encodeToString((authenticationToken + ":").getBytes());
-      if (!Objects.equals(tempAuth, this.authorization)) {
-	  this.authorization = tempAuth; 
-      }
-      return this;
+    var tempUrl = configuration.get("sonar.host.url").orElse("http://localhost:9000");
+    if (!Objects.equals(tempUrl, this.serverUrl)) {
+      LOG.info("Downloading rules from server '{}'", tempUrl);
+      this.serverUrl = tempUrl;
+      this.sslContext = SSLContextBuilder.createSSLContext(configuration);
+    }
+    // TODO: sonar.login is deprecated, remove in future version
+    String authenticationToken = configuration.get("sonar.token").or(() -> configuration.get("sonar.login"))
+        .orElse(System.getenv("SONAR_TOKEN"));
+    var tempAuth = "Basic " + Base64.getEncoder().encodeToString((authenticationToken + ":").getBytes());
+    if (!Objects.equals(tempAuth, this.authorization)) {
+      this.authorization = tempAuth;
+    }
+    return this;
   }
 
 }
