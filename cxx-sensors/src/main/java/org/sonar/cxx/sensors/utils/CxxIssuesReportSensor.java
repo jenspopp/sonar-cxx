@@ -93,7 +93,7 @@ public abstract class CxxIssuesReportSensor extends CxxReportSensor {
     try {
       var rules = webApi
         .setServerConfig(configuration)        .getRules("cxx", getRuleRepositoryKey());
-
+      LOG.info("Downloading rules for '{}' from server", getRuleRepositoryKey());
       // deactivate mapping if 'unknown' rule is not active
       var ruleMappingActive = true;
       if (context.activeRules().find(RuleKey.of(getRuleRepositoryKey(), DEFAULT_UNKNOWN_RULE_KEY)) == null) {

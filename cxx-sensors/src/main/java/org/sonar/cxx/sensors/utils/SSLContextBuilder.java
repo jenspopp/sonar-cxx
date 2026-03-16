@@ -71,7 +71,7 @@ public class SSLContextBuilder {
    */
   protected static SSLContext createSSLContext(Configuration config) {
     var sslFactoryBuilder = SSLFactory.builder().withDefaultTrustMaterial();
-    var skipSystemTrustMaterial = config.getBoolean(SKIP_SYSTEM_TRUST_MATERIAL).orElse(false);
+    var skipSystemTrustMaterial = config.getBoolean(SKIP_SYSTEM_TRUST_MATERIAL).orElse(true);
     if (!skipSystemTrustMaterial) {
       LOG.debug("Loading OS trusted SSL certificates...");
       LOG.debug(

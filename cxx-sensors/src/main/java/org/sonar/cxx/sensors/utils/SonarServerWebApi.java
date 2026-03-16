@@ -169,7 +169,7 @@ public class SonarServerWebApi {
 
     var tempUrl = configuration.get("sonar.host.url").orElse("http://localhost:9000");
     if (!Objects.equals(tempUrl, this.serverUrl)) {
-      LOG.info("Downloading rules from server '{}'", tempUrl);
+      LOG.info("Download url for server is '{}'", tempUrl);
       this.serverUrl = tempUrl;
       this.sslContext = SSLContextBuilder.createSSLContext(configuration);
     }
