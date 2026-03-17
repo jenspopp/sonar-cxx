@@ -18,6 +18,11 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+
+// Some parts of the SSL Code are adapted from: 
+// https://github.com/SonarSource/sonarqube/blob/bd7a1254715e0df950e61d05c9a07cb1ba42552b/sonar-scanner-engine/src/main/java/org/sonar/scanner/http/ScannerWsClientProvider.java#L152-L185
+// Don't remove copyright below!
+
 /*
  * SonarQube
  * Copyright (C) 2009-2025 SonarSource SA
@@ -72,7 +77,7 @@ public class SSLContextBuilder {
   protected static SSLContext createSSLContext(Configuration config) {
     var sslFactoryBuilder = SSLFactory.builder().withDefaultTrustMaterial();
     var skipSystemTrustMaterial = config.getBoolean(SKIP_SYSTEM_TRUST_MATERIAL).orElse(true);
-    if (!skipSystemTrustMaterial) {
+    if (Boolean.FALSE.equals(skipSystemTrustMaterial)) {
       LOG.debug("Loading OS trusted SSL certificates...");
       LOG.debug(
           "This operation might be slow or even get stuck. You can skip it by passing the scanner property '{}=true'",
